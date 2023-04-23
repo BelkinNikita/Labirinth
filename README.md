@@ -6,7 +6,7 @@ Red block kills a player
 Green block kills a player and red blocks.
 
 
-Yellow blocks gains score
+Yellow blocks gain score
 
 All colour blocks spawn on their bases
 
