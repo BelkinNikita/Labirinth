@@ -257,13 +257,6 @@ class Neutral(pygame.sprite.Sprite):
 
 
 
-
-
-
-
-
-
-
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -384,9 +377,6 @@ while running:
     if len(enemy_group) == 0:
         running = False
         endgame_string = "Congratulations! You've won!"
-
-
-
 
     for event in pygame.event.get():
 
