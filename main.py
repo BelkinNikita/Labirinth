@@ -19,13 +19,11 @@ npc_velocity = None
 TimeOfRespawn_neutral = 0
 score = 0
 string_score =('score: %s' % score)
-amout_red = 4
+amout_red = 7
 amout_yellow = 5
 amout_green = 0
 time = 0
 endgame_string = None
-
-
 
 running = True
 
@@ -52,7 +50,7 @@ class Level:
     def __init__(self):
         global distance_of_move, x_Player, y_Player, last_move_time, last_direction, npc_velocity
         distance_of_move = 25
-        x_Player, y_Player = 357, 357
+        x_Player, y_Player = 357, 407
         last_move_time = 0
         last_direction = 0
         npc_velocity = 0
@@ -98,16 +96,16 @@ class Player(pygame.sprite.Sprite):
         global x_Player, y_Player, last_move_time, collision_playerwall, last_direction, height, width
         if last_move_time > 10:
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_w]:
+            if keys[pygame.K_w] or keys[pygame.K_UP]:
                 y_Player -= distance_of_move
                 last_direction = 0
-            elif keys[pygame.K_s]:
+            elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
                 y_Player += distance_of_move
                 last_direction = 1
-            elif keys[pygame.K_a]:
+            elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
                 x_Player -= distance_of_move
                 last_direction = 2
-            elif keys[pygame.K_d]:
+            elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
                 x_Player += distance_of_move
                 last_direction = 3
             last_move_time = 0
@@ -165,7 +163,7 @@ class Defender(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.image = pygame.Surface((40, 40))
-        self.image.fill('Green')
+        self.image.fill('Darkgreen')
         self.x = x
         self.y = y
         self.rect = self.image.get_rect()
@@ -175,7 +173,6 @@ class Defender(pygame.sprite.Sprite):
 
 
     def direction(self):
-        print('npc.collision')
         if self.direction_choice == 'Bottom': self.rect.y -= distance_of_move * 2
         elif self.direction_choice == 'Top': self.rect.y += distance_of_move * 2
         elif self.direction_choice == 'Left': self.rect.x += distance_of_move * 2
@@ -201,7 +198,7 @@ class Defender(pygame.sprite.Sprite):
 
     def spawn():
         global score, amout_green
-        if score >= 20:
+        if score >= 40:
             defender_group.add(Defender(655, 405))
             score = 0
             amout_green += 1
@@ -221,7 +218,6 @@ class Neutral(pygame.sprite.Sprite):
 
 
     def direction(self):
-        print('npc.collision')
         if self.direction_choice == 'Bottom': self.rect.y -= distance_of_move * 2
         elif self.direction_choice == 'Top': self.rect.y += distance_of_move * 2
         elif self.direction_choice == 'Left': self.rect.x += distance_of_move * 2
@@ -248,13 +244,12 @@ class Neutral(pygame.sprite.Sprite):
     def spawn():
         global TimeOfRespawn_neutral, amout_yellow
         spawnplace = [Neutral(207, 7), Neutral(7, 257), Neutral(757, 257), Neutral(7, 607), Neutral(757, 607)]
-        if TimeOfRespawn_neutral > 170:
+        if TimeOfRespawn_neutral > 150:
             neutral_group.add(random.choice(spawnplace))
             TimeOfRespawn_neutral = 0
             amout_yellow += 1
         else:
             TimeOfRespawn_neutral += 1
-
 
 
 class Wall(pygame.sprite.Sprite):
@@ -267,7 +262,6 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
 
 def lines():
     x_line = 50
@@ -310,10 +304,13 @@ enemy_group.add(Enemy(705, 55))
 enemy_group.add(Enemy(155, 705))
 enemy_group.add(Enemy(255, 155))
 enemy_group.add(Enemy(105, 355))
+enemy_group.add(Enemy(655, 705))
+enemy_group.add(Enemy(55, 105))
+enemy_group.add(Enemy(355, 105))
 neutral_group.add(Neutral(357, 707))
 neutral_group.add(Neutral(157, 257))
 neutral_group.add(Neutral(457, 57))
-neutral_group.add(Neutral(357, 257))
+neutral_group.add(Neutral(407, 257))
 neutral_group.add(Neutral(257, 507))
 
 
@@ -378,6 +375,9 @@ while running:
         running = False
         endgame_string = "Congratulations! You've won!"
 
+
+
+
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -396,4 +396,3 @@ while running:
 
 pygame.quit()
 endgame_window()
-
