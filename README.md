@@ -2,6 +2,7 @@ White block is a player
 
 
 Red blocks kill a player
+
 Green blocks kill a player and red blocks 
 
 
