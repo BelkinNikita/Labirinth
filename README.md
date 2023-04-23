@@ -11,7 +11,7 @@ Yellow blocks gains score
 If a green block destroys a red block or a yellow one, than a player gets a score point
 
 
-Green block costs 20 score
+Green block costs 20 score points
 
 
 
