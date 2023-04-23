@@ -3,7 +3,7 @@ White block is a player
 
 Red block kills a player
 
-Green block kills a player and red blocks too.
+Green block kills a player and red blocks.
 
 
 Yellow blocks gains a score point
