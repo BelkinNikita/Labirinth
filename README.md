@@ -15,7 +15,7 @@ if red block kills yellow block, than a new one red block will be birthed on red
 If a green block destroys a red block or a yellow one, than a player gets a score point
 
 
-Green block costs 20 score points
+Green block costs 30 score points
 
 
 
