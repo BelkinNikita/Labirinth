@@ -198,7 +198,7 @@ class Defender(pygame.sprite.Sprite):
 
     def spawn():
         global score, amout_green
-        if score >= 40:
+        if score >= 30:
             defender_group.add(Defender(655, 405))
             score = 0
             amout_green += 1
